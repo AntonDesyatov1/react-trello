@@ -1,0 +1,19 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  align-items: center;
+}
+
+.board {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 0 5%;
+  width: 100%;
+}
+
+.add-card {
+  width: 200px;
+  margin-bottom: 15px;
+}
