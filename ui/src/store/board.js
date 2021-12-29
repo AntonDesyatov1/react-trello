@@ -12,6 +12,10 @@ const REMOVE_CARD_REQUEST = "BOARD/REMOVE_CARD_REQUEST";
 const REMOVE_CARD_SUCCESS = "BOARD/REMOVE_CARD_SUCESS";
 const REMOVE_CARD_FAILURE = "BOARD/REMOVE_CARD_FAILURE";
 
+const MOVE_CARD_REQUEST = "BOARD/MOVE_CARD_REQUEST";
+const MOVE_CARD_SUCCESS = "BOARD/MOVE_CARD_SUCCESS";
+const MOVE_CARD_FAILURE = "BOARD/MOVE_CARD_FAILURE";
+
 const api = "http://localhost:9000";
 
 const initialState = {
@@ -25,6 +29,7 @@ export default function reducer(state = initialState, action = {}) {
     case FETCH_BOARD_REQUEST:
     case ADD_CARD_REQUEST:
     case REMOVE_CARD_REQUEST:
+    case MOVE_CARD_REQUEST:
       return {
         ...state,
         isLoading: true,
@@ -32,6 +37,7 @@ export default function reducer(state = initialState, action = {}) {
     case FETCH_BOARD_SUCCESS:
     case ADD_CARD_SUCCESS:
     case REMOVE_CARD_SUCCESS:
+    case MOVE_CARD_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -40,6 +46,7 @@ export default function reducer(state = initialState, action = {}) {
     case FETCH_BOARD_FAILURE:
     case ADD_CARD_FAILURE:
     case REMOVE_CARD_FAILURE:
+    case MOVE_CARD_FAILURE:
       return {
         ...state,
         isLoading: false,
@@ -115,5 +122,29 @@ export const removeCard =
       dispatch(removeCardSuccess(data));
     } catch (error) {
       dispatch(removeCardFailure(error));
+    }
+  };
+
+const moveCardRequest = () => ({ type: MOVE_CARD_REQUEST });
+
+const moveCardSuccess = (payload) => ({ type: MOVE_CARD_SUCCESS, payload });
+
+const moveCardFailure = (payload) => ({ type: MOVE_CARD_FAILURE, payload });
+
+export const moveCard =
+  ({ fromId, toId, cardId }) =>
+  async (dispatch) => {
+    dispatch(moveCardRequest());
+    try {
+      const { data } = await axios.post(`${api}/moveCard`, null, {
+        params: {
+          fromId,
+          toId,
+          cardId,
+        },
+      });
+      dispatch(moveCardSuccess(data));
+    } catch (error) {
+      dispatch(moveCardFailure(error));
     }
   };

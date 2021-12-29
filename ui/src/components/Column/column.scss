@@ -17,7 +17,11 @@
     height: 50px;
   }
 
-  &__empty {
-    padding: 5px;
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100px;
   }
 }

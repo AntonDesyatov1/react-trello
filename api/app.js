@@ -5,11 +5,13 @@ const port = 9000;
 const fetchBoard = require("./routes/fetch-board/fetch-board");
 const addCard = require("./routes/add-card/add-card");
 const removeCard = require("./routes/remove-card/remove-card");
+const moveCard = require("./routes/move-card/move-card");
 
 app.set("port", port);
 app.use(cors());
 app.get("/fetchboard", fetchBoard);
 app.post("/addcard", addCard);
+app.post("/movecard", moveCard);
 app.delete("/removecard", removeCard);
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
