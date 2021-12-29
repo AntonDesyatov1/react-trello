@@ -2,9 +2,22 @@
   display: flex;
   width: 25%;
   margin: 20px;
-  padding: 10px;
   align-items: center;
   flex-direction: column;
   height: 100%;
   border: 1px solid black;
+  overflow: auto;
+
+  &__name {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid black;
+    height: 50px;
+  }
+
+  &__empty {
+    padding: 5px;
+  }
 }

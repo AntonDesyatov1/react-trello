@@ -2,13 +2,20 @@ import React from "react";
 import Card from "../Card";
 import "./column.scss";
 
-const Column = ({ name, cards }) => (
+const Column = ({ name, cards, columnIndex }) => (
   <section className="column" key={name}>
-    {<span>{name}</span>}
+    {<span className="column__name">{name}</span>}
     {cards.length ? (
-      cards.map((card) => <Card name={card.name} />)
+      cards.map(({ name, description }, index) => (
+        <Card
+          name={name}
+          description={description}
+          cardIndex={index}
+          columnIndex={columnIndex}
+        />
+      ))
     ) : (
-      <span>Nothing to display yet...</span>
+      <span className="column__empty">Nothing to display yet...</span>
     )}
   </section>
 );

@@ -5,4 +5,39 @@
   width: 60%;
   height: 100px;
   margin: 5% 0;
+  display: flex;
+  flex-direction: column;
+
+  &__remove {
+    position: relative;
+    background-color: white;
+    border: none;
+    right: -85%;
+    top: -5%;
+    width: 16px;
+    height: 16px;
+    opacity: 0.3;
+  }
+
+  &__remove:hover {
+    opacity: 1;
+    background-color: white;
+
+    cursor: pointer;
+  }
+
+  &__remove:before,
+  &__remove:after {
+    position: absolute;
+    content: " ";
+    height: 20px;
+    width: 2px;
+    background-color: #333;
+  }
+  &__remove:before {
+    transform: rotate(45deg);
+  }
+  &__remove:after {
+    transform: rotate(-45deg);
+  }
 }

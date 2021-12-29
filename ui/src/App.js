@@ -47,8 +47,8 @@ class App extends React.Component {
           Add card
         </button>
         <div className="board">
-          {data?.map(({ name, cards }) => (
-            <Column name={name} cards={cards} />
+          {data?.map(({ name, cards }, index) => (
+            <Column name={name} cards={cards} columnIndex={index} />
           ))}
         </div>
         {this.state.isCardModalOpen && (

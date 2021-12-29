@@ -4,11 +4,20 @@ const fs = require("fs");
 const path = require("path");
 const filePath = path.join(__dirname, "../../database/database.json");
 
-router.post("/addcard", async (req, res, next) => {
+router.delete("/removecard", async (req, res, next) => {
   try {
-    const { cardName, cardDescription } = req.query;
-    const data = JSON.parse(fs.readFileSync(filePath));
-    data[0].cards.push({ name: cardName, description: cardDescription });
+    const { cardIndex, columnIndex } = req.query;
+    const data = JSON.parse(fs.readFileSync(filePath)).map((column, index) => {
+      if (index !== +columnIndex) {
+        return column;
+      }
+
+      return {
+        ...column,
+        cards: column.cards.filter((card, index) => index !== +cardIndex),
+      };
+    });
+
     fs.writeFileSync(filePath, JSON.stringify(data), "utf8");
     res.status(200);
     res.send(data);

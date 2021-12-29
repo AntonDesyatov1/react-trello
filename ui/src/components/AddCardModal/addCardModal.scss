@@ -24,6 +24,10 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    & > input {
+      border: 1px solid black;
+    }
   }
 }
 
@@ -33,7 +37,7 @@
   border: none;
   right: -44%;
   top: -85%;
-  width: 32;
+  width: 32px;
   height: 16px;
   opacity: 0.3;
 }
