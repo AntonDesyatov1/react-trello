@@ -3,6 +3,12 @@ import React from "react";
 import { fetchBoard, addCard } from "./store/board";
 import Column from "./components/Column";
 import AddCardModal from "./components/AddCardModal";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
+
 import "./App.scss";
 
 class App extends React.Component {
@@ -21,6 +27,11 @@ class App extends React.Component {
 
   addCard = (cardData) => {
     this.props.addCard(cardData);
+    NotificationManager.success(
+      "Card has been successfuly created",
+      "Success!",
+      3000
+    );
     this.toggleCardModal();
   };
 
@@ -46,6 +57,7 @@ class App extends React.Component {
             toggleCardModal={this.toggleCardModal}
           />
         )}
+        <NotificationContainer />
       </div>
     );
   }
